@@ -21,9 +21,8 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 
 ## 使用方法
 
- 得益于phoenix的灵活性，和强大的封装能力，服务器实现一个im服务器非常简单，
- 自带了一个示例，可参考IM.js的实现，如果不改服务器的实现，客户端只需实现对new_msg 消息的处理就行了，
- 如果要实现单对单的聊天，只需保证room id的唯一就可以了，这些可由具体的业务实现，
+ 得益于强大的phoenix，服务器实现一个im服务器非常简单，设计原则，所有的客户端都通个同个topic互通（类似于聊天室的房间），如果不改服务器的实现，客户端只需实现对new_msg 消息的处理就行了，
+ 如果要实现单对单的聊天，只需保证room id的唯一，这些可由具体的业务实现，
  另外有两个http接口，可以对指定用户发，和指定的房间发送消息
  
 ### 对指定的用户发送消息
@@ -151,7 +150,7 @@ example
                 "channel": "Elixir.PhoenixIm.RoomChannel",
                 "assigns": {
                     "username": "test1",
-                    "room_id": "999"
+                    "room_id": "999" //真实房间是 "room:998",所以向一个房间发送消息时的room为"room:998"
                 }
             },
             {
