@@ -19,6 +19,7 @@ defmodule PhoenixIm.Router do
     post "/send/room", ApiController, :sendRomm
     get "/socket/container/info", ApiController, :socketContainerInfo
     get "/socket/all", ApiController, :allSocket
+    get "/socket/get", ApiController, :getOneSocket
   end
 
   scope "/", PhoenixIm do

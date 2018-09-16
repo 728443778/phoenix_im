@@ -38,4 +38,8 @@ defmodule PhoenixIm.ApiController do
   def allSocket(conn, _) do
     json conn, Response.response(Response.codeIsOk(), PhoenixIm.SocketContainer.getAll())
   end
+
+  def getOneSocket(conn, %{"username" => username}) do
+    json conn, Response.response(Response.codeIsOk(), PhoenixIm.SocketContainer.get(username))
+  end
 end
