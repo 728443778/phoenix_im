@@ -36,10 +36,31 @@ defmodule PhoenixIm.ApiController do
   end
 
   def allSocket(conn, _) do
-    json conn, Response.response(Response.codeIsOk(), PhoenixIm.SocketContainer.getAll())
+    json conn, Response.response(Response.codeIsOk(), %{"sockets" => PhoenixIm.SocketContainer.getAll() |> formatAllSocket})
   end
 
   def getOneSocket(conn, %{"username" => username}) do
-    json conn, Response.response(Response.codeIsOk(), PhoenixIm.SocketContainer.get(username))
+    json conn, Response.response(Response.codeIsOk(), username |> PhoenixIm.SocketContainer.get |> formatSocket)
   end
+
+  def formatSocket(socket) do
+    %{assigns: assigns, channel: channel, channel_pid: channel_pid, handler: handler, join_ref: join_ref, topic: topic,
+    transport: transport, transport_name: transport_name, transport_pid: transport_pid, vsn: vsn, pubsub_server: pubsub_server,
+    serializer: serializer} = socket
+    %{
+    assigns: assigns, channel: channel, channel_pid: Inspect.PID.inspect(channel_pid, ""), handler: handler,
+    join_ref: join_ref, topic: topic, transport: transport, transport_pid: Inspect.PID.inspect(transport_pid, transport_pid),
+    vsn: vsn, pubsub_server: pubsub_server, serializer: serializer
+    }
+  end
+
+  def formatAllSocket(sockets) do
+    Enum.map(sockets, fn x->_formatAllSocket(x) end)
+  end
+
+  def _formatAllSocket(socket) do
+    {key, socket} = socket
+    formatSocket(socket)
+  end
+
 end
