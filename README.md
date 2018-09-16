@@ -150,7 +150,7 @@ example
                 "channel": "Elixir.PhoenixIm.RoomChannel",
                 "assigns": {
                     "username": "test1",
-                    "room_id": "999" //真实房间是 "room:998",所以向一个房间发送消息时的room为"room:998"
+                    "room_id": "999" //真实房间是 "room:999",所以向一个房间发送消息时的room为"room:999"
                 }
             },
             {
