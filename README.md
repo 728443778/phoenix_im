@@ -76,6 +76,140 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 }
 ```
 
+### 获取im socket管理表的信息
+对单个用户发送消息的实现，使用了ets存储用户的socket
+#### Request
+**请求url**
+- `http://127.0.0.1:4000/api/socket/container/info`  
+
+**Request Method**
+- GET
+
+**参数**
+
+无
+
+#### Response
+```apacheconfig
+{
+    "msg": "",
+    "data": {},
+    "code": 200  //200表示成功，其他表示失败，
+}
+
+example
+
+{
+    "msg": "",
+    "data": {
+        "write_concurrency": true,
+        "type": "set",
+        "size": 2,
+        "read_concurrency": true,
+        "protection": "protected",
+        "owner": "#PID<0.344.0>",
+        "node": "nonode@nohost",
+        "named_table": "true",
+        "name": "users_table",
+        "memory": 1500,
+        "keypos": 1,
+        "heir": "none",
+        "compressed": false
+    },
+    "code": 200
+}
+```
+
+### 获取连接的所有socket信息
+#### Request
+**请求url**
+- `http://127.0.0.1:4000/api/socket/all`  
+
+**Request Method**
+- GET
+
+**参数**
+
+无
+
+#### Response
+```apacheconfig
+{
+    "msg": "",
+    "data": {
+        "sockets": [
+            {
+                "vsn": "2.0.0",
+                "transport_pid": "#PID<0.926.0>",
+                "transport": "Elixir.Phoenix.Transports.WebSocket",
+                "topic": "room:999",
+                "serializer": "Elixir.Phoenix.Transports.V2.WebSocketSerializer",
+                "pubsub_server": "Elixir.PhoenixIm.PubSub",
+                "join_ref": "15",
+                "handler": "Elixir.PhoenixIm.UserSocket",
+                "channel_pid": "#PID<0.943.0>",
+                "channel": "Elixir.PhoenixIm.RoomChannel",
+                "assigns": {
+                    "username": "test1",
+                    "room_id": "999"
+                }
+            },
+            {
+                "vsn": "2.0.0",
+                "transport_pid": "#PID<0.780.0>",
+                "transport": "Elixir.Phoenix.Transports.WebSocket",
+                "topic": "room:998",
+                "serializer": "Elixir.Phoenix.Transports.V2.WebSocketSerializer",
+                "pubsub_server": "Elixir.PhoenixIm.PubSub",
+                "join_ref": "59",
+                "handler": "Elixir.PhoenixIm.UserSocket",
+                "channel_pid": "#PID<0.945.0>",
+                "channel": "Elixir.PhoenixIm.RoomChannel",
+                "assigns": {
+                    "username": "test2",
+                    "room_id": "998"
+                }
+            }
+        ]
+    },
+    "code": 200
+}
+```
+
+### 根据username 获取指定socket
+#### Request
+**请求url**
+- `http://127.0.0.1:4000/api/socket/get?username={username}`  
+
+**Request Method**
+- GET
+
+
+#### Response
+
+```apacheconfig
+{
+    "msg": "",
+    "data": {
+        "vsn": "2.0.0",
+        "transport_pid": "#PID<0.926.0>",
+        "transport": "Elixir.Phoenix.Transports.WebSocket",
+        "topic": "room:999",
+        "serializer": "Elixir.Phoenix.Transports.V2.WebSocketSerializer",
+        "pubsub_server": "Elixir.PhoenixIm.PubSub",
+        "join_ref": "15",
+        "handler": "Elixir.PhoenixIm.UserSocket",
+        "channel_pid": "#PID<0.943.0>",
+        "channel": "Elixir.PhoenixIm.RoomChannel",
+        "assigns": {
+            "username": "test1",
+            "room_id": "999"
+        }
+    },
+    "code": 200
+}
+```
+
 ### 客户端js
 具体可参考，phoenix的js文档
 示例中的js，都在web/static/js  目录下
