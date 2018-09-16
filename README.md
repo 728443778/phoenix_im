@@ -144,3 +144,18 @@ let IM = {
 
 export default IM
 ```
+
+### RUN
+```apacheconfig
+git clone https://github.com/728443778/phoenix_im.git
+cd phoenix_im
+mix deps.get
+npm install
+当遇到npm install出错时
+mkdir assets
+cd assets
+npm install 
+我是这样解决的
+
+iex -S mix phx.server
+```
