@@ -8,7 +8,7 @@ defmodule PhoenixIm.Response do
   end
 
   def codeIsOk do
-    0
+    200
   end
 
   def codeNotFound do

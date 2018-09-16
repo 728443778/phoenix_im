@@ -9,6 +9,7 @@ defmodule PhoenixIm.ApiController do
   end
 
   def _sendToUser(username, data) do
+    {:ok, data} = JSON.decode(data)
     case PhoenixIm.SocketContainer.get( username) do
       nil -> Response.response(Response.codeNotFound(), %{}, "Not found user socket")
       socket -> socket = %{socket | joined: true}
@@ -25,7 +26,8 @@ defmodule PhoenixIm.ApiController do
   end
 
   def _sendToRomm(room, data) do
-      PhoenixIm.Endpoint.broadcast_from self(), room, "new_msg", data
-      Response.response(Response.codeIsOk())
+    {:ok, data} = JSON.decode(data)
+    PhoenixIm.Endpoint.broadcast_from self(), room, "new_msg", data
+    Response.response(Response.codeIsOk())
   end
 end

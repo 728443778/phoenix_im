@@ -22,7 +22,10 @@ let IM = {
             console.log("roomId:" + roomId)
             let channel = socket.channel("room:"+roomId, {"username" : username})
             channel.join().receive("ok", resp => console.log("joined this room:" + roomId, resp))
-                .receive("error", resp => console.log("join failed:", resp))
+                .receive("error", (resp) => {
+                    alert("join failed")
+                    console.log("join failed:", resp)
+                })
             channel.on("ping", ({}))
             channel.on("new_msg", (resp) => {
                 console.log("resp")
