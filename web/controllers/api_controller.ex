@@ -30,4 +30,12 @@ defmodule PhoenixIm.ApiController do
     PhoenixIm.Endpoint.broadcast_from self(), room, "new_msg", data
     Response.response(Response.codeIsOk())
   end
+
+  def socketContainerInfo(conn , _) do
+    json conn, Response.response(Response.codeIsOk(), PhoenixIm.ApiView.render("socket_contaer_info.json", PhoenixIm.SocketContainer.info()))
+  end
+
+  def allSocket(conn, _) do
+    json conn, Response.response(Response.codeIsOk(), PhoenixIm.SocketContainer.getAll())
+  end
 end

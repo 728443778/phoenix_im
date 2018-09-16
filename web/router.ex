@@ -17,6 +17,8 @@ defmodule PhoenixIm.Router do
     pipe_through :api
     post "/send/user", ApiController, :sendUser
     post "/send/room", ApiController, :sendRomm
+    get "/socket/container/info", ApiController, :socketContainerInfo
+    get "/socket/all", ApiController, :allSocket
   end
 
   scope "/", PhoenixIm do
