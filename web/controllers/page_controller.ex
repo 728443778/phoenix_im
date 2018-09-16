@@ -4,4 +4,9 @@ defmodule PhoenixIm.PageController do
   def index(conn, _params) do
     render conn, "index.html"
   end
+
+  def socketTest(conn, params) do
+    render conn, "socket.html"
+  end
+
 end
