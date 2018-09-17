@@ -292,3 +292,16 @@ npm install
 
 iex -S mix phx.server
 ```
+
+### Release
+```apacheconfig
+mix deps.update --all
+npm install
+MIX_ENV=prod mix release --env=prod
+mkdir release
+tar -zcvf ./release/phoenix_im.tgz -C ./_build/prod/rel phoenix_im
+
+在服务器上
+tar -zxvf phoenix_im.tar.gz
+phoenix_im/bin/phoenix_im start 或者通过supervisor管理
+```
