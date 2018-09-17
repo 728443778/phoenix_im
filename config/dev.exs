@@ -24,6 +24,9 @@ config :phoenix_im, PhoenixIm.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
+  server: true,
+  root: ".",
+  version: Application.spec(:phoenix_im, :vsn),
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
                     cd: Path.expand("../", __DIR__)]]
 

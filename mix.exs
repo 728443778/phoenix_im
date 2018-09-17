@@ -40,6 +40,7 @@ defmodule PhoenixIm.Mixfile do
       {:cowboy, "~> 1.0"},
       {:json, "~> 1.2"},
       {:jason, "~> 1.0"},
+      {:distillery, "~> 2.0"}
     ]
   end
 end
