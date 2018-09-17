@@ -22,7 +22,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 ## 使用方法
 
  得益于强大的phoenix，服务器实现一个im服务器非常简单，设计原则，所有的客户端都通个同个topic互通（类似于聊天室的房间），如果不改服务器的实现，客户端只需实现对new_msg 消息的处理就行了，
- 如果要实现单对单的聊天，只需保证room id的唯一，这些可由具体的业务实现，
+ 如果要实现单对单的聊天，只需保证room里只有两个人就行了，可hash一个room出来，只有连接的两个用户知道,或者是向单个socket发送消息，这些可由具体的业务实现，
  另外有两个http接口，可以对指定用户发，和指定的房间发送消息
  
 ### 对指定的用户发送消息
