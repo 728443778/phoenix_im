@@ -296,6 +296,9 @@ iex -S mix phx.server
 ### Release
 ```apacheconfig
 mix deps.update --all
+cp env/prod.secret.exs config/
+mix phx.gen.secret 128
+复制生成的内容到 config/prod.secret.exs 文件中
 npm install
 MIX_ENV=prod mix release --env=prod
 mkdir release
