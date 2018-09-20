@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :phoenix_im, PhoenixIm.Endpoint,
   http: [:inet6, port: 4000],
-  url: [host: "*", port: 4000],  # 这个处理check origin选项有用
+  url: [host: "127.0.0.1", port: 4000],  # 这个处理check origin选项有用
   cache_static_manifest: "priv/static/cache_manifest.json",
   code_reloader: false,
   server: true,
