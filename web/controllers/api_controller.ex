@@ -9,7 +9,7 @@ defmodule PhoenixIm.ApiController do
   end
 
   def _sendToUser(username, data) do
-    {:ok, data} = JSON.decode(data)
+    {:ok, data} = Jason.decode(data)
     case PhoenixIm.SocketContainer.get( username) do
       nil -> Response.response(Response.codeNotFound(), %{}, "Not found user socket")
       socket -> socket = %{socket | joined: true}
@@ -26,7 +26,7 @@ defmodule PhoenixIm.ApiController do
   end
 
   def _sendToRomm(room, data) do
-    {:ok, data} = JSON.decode(data)
+    {:ok, data} = Jason.decode(data)
     PhoenixIm.Endpoint.broadcast_from self(), room, "new_msg", data
     Response.response(Response.codeIsOk())
   end
@@ -45,12 +45,12 @@ defmodule PhoenixIm.ApiController do
 
   def formatSocket(socket) do
     %{assigns: assigns, channel: channel, channel_pid: channel_pid, handler: handler, join_ref: join_ref, topic: topic,
-    transport: transport, transport_name: transport_name, transport_pid: transport_pid, vsn: vsn, pubsub_server: pubsub_server,
+    transport: transport, transport_pid: transport_pid, pubsub_server: pubsub_server,
     serializer: serializer} = socket
     %{
     assigns: assigns, channel: channel, channel_pid: Inspect.PID.inspect(channel_pid, ""), handler: handler,
     join_ref: join_ref, topic: topic, transport: transport, transport_pid: Inspect.PID.inspect(transport_pid, transport_pid),
-    vsn: vsn, pubsub_server: pubsub_server, serializer: serializer
+    pubsub_server: pubsub_server, serializer: serializer
     }
   end
 
