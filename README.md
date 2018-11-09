@@ -38,8 +38,8 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 
 |参数名|是否必需|类型|说明|
 |:----|:----|:----|----|
-|username|是|string|无|
-|data|是|json|无|
+|username|是|string|eg 998|
+|data|是|json|eg {"username":998, "data":"hello world"}|
 
 #### Response
 ```apacheconfig
@@ -63,8 +63,8 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 
 |参数名|是否必需|类型|说明|
 |:----|:----|:----|----|
-|room|是|string|客户端在链接的时候，是默认加上了room前缀的，所有房间号都是以room:开头的字符串|
-|data|是|json|无|
+|room|是|string|客户端在链接的时候，是默认加上了room前缀的，所有房间号都是以room:开头的字符串 eg: room:998|
+|data|是|json|{eg "username":998, "data":"hello world"}|
 
 #### Response
 ```apacheconfig
